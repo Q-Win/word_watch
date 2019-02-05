@@ -13,15 +13,15 @@ function getTopWord(){
     var word = JSON.parse(request.responseText)
     var key = Object.keys(word.word)
     var count = word.word[key]
-    debugger;
     formatWord(key, count)
   };
   request.send();
 
 }
 
-function formatWord(){
-    console.log("test")
+function formatWord(word, count){
+    $("#top-word").empty();
+    $("#top-word").append(`<h3>${word} is used a total ${count} times</h3>`)
 }
 
-getTopWord(word, count)
+getTopWord();
