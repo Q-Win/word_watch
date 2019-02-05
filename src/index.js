@@ -37,22 +37,18 @@ function postWord(word) {
     data: body,
     dataType: "json"
   })
-}
-
-// $("#submit-new-word").click(function (){
-//   console.log("test")
-//   postWord('words')
-// })
-
-function splitTextToWords(string){
-
+  event.preventDefault()
 }
 
 
 function clickSubmit(){
   var userText = document.getElementById("user-text").value
-  postWord(userText)
+  var word_array = userText.split(" ")
+  for (var i = 0; i<word_array.length; i++){
+    postWord(word_array[i])
+
+  }
+  getTopWord();
 }
 
 getTopWord();
-// postWord('words');
