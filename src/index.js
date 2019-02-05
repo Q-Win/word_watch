@@ -2,6 +2,9 @@ import $ from 'jquery'
 
 $(document).ready(() => {
   // have fun!
+  var submitWordButton = document.getElementById("submit-new-word")
+  submitWordButton.addEventListener("click",clickSubmit, true);
+
 })
 
 
@@ -24,4 +27,32 @@ function formatWord(word, count){
     $("#top-word").append(`<h3>${word} is used a total ${count} times</h3>`)
 }
 
+function postWord(word) {
+
+  var body = {"word": {"value": `${word}`}};
+
+  $.ajax({
+    type:"POST",
+    url: "https://wordwatch-api.herokuapp.com/api/v1/words",
+    data: body,
+    dataType: "json"
+  })
+}
+
+// $("#submit-new-word").click(function (){
+//   console.log("test")
+//   postWord('words')
+// })
+
+function splitTextToWords(string){
+
+}
+
+
+function clickSubmit(){
+  var userText = document.getElementById("user-text").value
+  postWord(userText)
+}
+
 getTopWord();
+// postWord('words');
